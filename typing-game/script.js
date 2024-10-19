@@ -19,7 +19,10 @@ const quoteElement = document.getElementById('quote');
 const messageElement = document.getElementById('message');
 const typedValueElement = document.getElementById('typed-value');
 // at the end of script.js
+typedValueElement.disabled = true;
+
 document.getElementById('start').addEventListener('click', () => {
+    typedValueElement.disabled = false;
     // get a quote
     const quoteIndex = Math.floor(Math.random() * quotes.length);
     const quote = quotes[quoteIndex];
@@ -47,7 +50,7 @@ document.getElementById('start').addEventListener('click', () => {
   
     // Start the timer
     startTime = new Date().getTime();
-  });
+
   // at the end of script.js
 typedValueElement.addEventListener('input', () => {
     // Get the current word
@@ -61,7 +64,8 @@ typedValueElement.addEventListener('input', () => {
       const elapsedTime = new Date().getTime() - startTime;
       const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
       messageElement.innerText = message;
-      typedValueElement.removeEventListener('this');
+      typedValueElement.disabled = true;
+      typedValueElement.removeEventListener(this);
     } else if (typedValue.endsWith(' ') && typedValue.trim() === currentWord) {
       // end of word
       // clear the typedValueElement for the new word
@@ -82,4 +86,6 @@ typedValueElement.addEventListener('input', () => {
       // error state
       typedValueElement.className = 'error';
     }
+  });
+
   });
