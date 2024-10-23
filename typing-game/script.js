@@ -14,6 +14,7 @@ let words = [];
 let wordIndex = 0;
 // the starting time
 let startTime = Date.now();
+let highScore = 0;
 // page elements
 const quoteElement = document.getElementById('quote');
 const messageElement = document.getElementById('message');
@@ -62,7 +63,10 @@ typedValueElement.addEventListener('input', () => {
       // end of sentence
       // Display success
       const elapsedTime = new Date().getTime() - startTime;
-      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.`;
+      highScore = elapsedTime;
+      const message = `CONGRATULATIONS! You finished in ${elapsedTime / 1000} seconds.\nHigh Score: ${highScore/1000} seconds`;
+      //at the start
+      //near congrats message
       messageElement.innerText = message;
       typedValueElement.disabled = true;
       typedValueElement.removeEventListener(this);
